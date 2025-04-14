@@ -3,14 +3,8 @@
 {% block content %}
     <h1>How are you feel today?</h1>
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class='flash'>{{messages[0]}}</div>
-        {% endif %}
-    {% endwith %}
-
     <form method="POST">
-        <input type="text" name="mood" placeholder="Wpisz nastrój" required>
+        <input type="number" name="mood" min="1" max="10" placeholder="Rank your todays mood on scle 1 to 10" required>
         <button type="submit">Save</button>
     </form>
 

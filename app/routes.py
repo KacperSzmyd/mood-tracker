@@ -40,7 +40,7 @@ def chart():
         return redirect(url_for("main.index"))
 
     dates = [m.date.strftime("%Y-%m-%d %H:%M") for m in moods]
-    values = list(range(1, len(moods) + 1))
+    values = [m.mood for m in moods]
 
     plt.figure(figsize=(12, 6))
     plt.plot(dates, values, marker="o", linestyle="-", color="royalblue")
