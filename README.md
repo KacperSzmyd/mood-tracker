@@ -1,3 +1,4 @@
+![Tests](https://img.shields.io/github/actions/workflow/status/KacperSzmyd/mood-tracker/tests.yml?branch=main&label=tests&logo=github&style=flat-square)
 # Mood Tracker Web App
 
 A simple web application for tracking your daily mood. Built with Flask, SQLite, and basic HTML/CSS. The app allows users to submit their mood each day and view their mood history.
