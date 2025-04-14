@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Jak się dziś czujesz?</h1>
+    <h1>How are you feel today?</h1>
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -16,11 +16,10 @@
 
     <form method="POST">
         <input type="text" name="mood" placeholder="Wpisz nastrój" required>
-        <button type="submit">Zapisz</button>
+        <button type="submit">Save</button>
     </form>
 
-    <h2>Historia:</h2>
-    <p>{{ url_for('static', filename='style.css') }}</p>
+    <h2>History:</h2>
     <ul>
         {% for entry in entries %}
         <li>{{ entry.date.strftime('%Y-%m-%d %H:%M') }} – {{ entry.mood }}</li>
