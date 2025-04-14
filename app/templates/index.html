@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Jak się dziś czujesz?</h1>
+    <form method="POST">
+        <input type="text" name="mood" placeholder="Wpisz nastrój" required>
+        <button type="submit">Zapisz</button>
+    </form>
+
+    <h2>Historia:</h2>
+    <ul>
+        {% for entry in entries %}
+        <li>{{ entry.date.strftime('%Y-%m-%d %H:%M') }} – {{ entry.mood }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
