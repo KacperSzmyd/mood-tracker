@@ -4,6 +4,13 @@
 
 {% block content %}
     <h1>Your moods</h1>
+
+    {% if avg %}
+        <p style="text-align:center; font-weight:bold;">
+            Weekly average mood: {{ "%.2f"|format(avg) }}
+        </p>
+    {% endif %}
+
     <div class='chart-container'>
         <img src="data:image/png;base64,{{ plot_url }}" alt="Mood chart">
     </div>

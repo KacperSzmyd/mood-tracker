@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request, flash, url_for
 from flask_login import login_required, current_user
-from datetime import datetime
+from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import io
 import base64
@@ -42,19 +42,33 @@ def chart():
     dates = [m.date.strftime("%Y-%m-%d %H:%M") for m in moods]
     values = [m.mood for m in moods]
 
-    plt.figure(figsize=(12, 6))
-    plt.plot(dates, values, marker="o", linestyle="-", color="royalblue")
-    plt.xticks(rotation=45, fontsize=10)
-    plt.yticks(fontsize=10)
-    plt.tight_layout()
-    plt.title("Mood Tracker", fontsize=16)
-    plt.xlabel("Date", fontsize=12)
-    plt.ylabel("Mood Entry Number", fontsize=12)
-    plt.tight_layout(pad=2.0)
+    colors = []
+    for mood in values:
+        if mood <= 3:
+            colors.append("red")
+        elif mood <= 6:
+            colors.append("orange")
+        else:
+            colors.append("green")
+
+    now = datetime.now()
+    week_ago = now - timedelta(days=7)
+    last_week_moods = [m.mood for m in moods if m.date >= week_ago]
+
+    avg = sum(last_week_moods) / len(last_week_moods) if last_week_moods else None
+
+    plt.figure(figsize=(10, 5))
+    plt.scatter(dates, values, c=colors, s=80)
+    plt.xticks(rotation=45)
+    plt.ylim(0, 10.5)
+    plt.title("Mood Tracker")
+    plt.xlabel("Date")
+    plt.ylabel("Mood (1–10)")
+    plt.tight_layout(pad=2)
 
     img = io.BytesIO()
     plt.savefig(img, format="png")
     img.seek(0)
     plot_url = base64.b64encode(img.getvalue()).decode()
 
-    return render_template("chart.html", plot_url=plot_url)
+    return render_template("chart.html", plot_url=plot_url, avg=avg)
