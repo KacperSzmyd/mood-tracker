@@ -39,7 +39,6 @@ A simple web application for tracking your daily mood. Built with Flask, SQLite,
 
 
 🧪 To Do / Upcoming Features
- User authentication (login/register)
 
  Export mood history (CSV)
 
