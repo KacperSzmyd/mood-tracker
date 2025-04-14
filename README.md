@@ -45,8 +45,6 @@ A simple web application for tracking your daily mood. Built with Flask, SQLite,
 
  Graph visualization of moods
 
- Tests and CI integration
-
  Frontend improvements (JS interactivity or React)
 
 💡 Inspiration

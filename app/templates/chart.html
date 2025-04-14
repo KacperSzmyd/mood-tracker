@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Mood Chart{% endblock %}
+
+{% block content %}
+    <h1>Your moods</h1>
+    <div class='chart-container'>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Mood chart">
+    </div>
+{% endblock %}
