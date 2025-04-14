@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="navbar">
-        {% if current_user.is_authenticated %}
-            <a href="{{ url_for('main.index') }}">Mood Tracker</a>
-            <a href="{{ url_for('auth.logout') }}">Logout</a>
-        {% else %}
-            <a href="{{ url_for('auth.login') }}">Login</a>
-            <a href="{{ url_for('auth.register') }}">Register</a>
-        {% endif %}
-    </div>
+{% extends 'base.html' %}
+
+{% block title %}login{% endblock title %}
+{% block content %}
     <h1>Login</h1>
 
     {% with messages = get_flashed_messages() %}
@@ -30,5 +17,4 @@
     </form>
 
     <a href="{{ url_for('auth.register') }}">Don't have an account? Register here</a>
-</body>
-</html>
+{% endblock content %}
