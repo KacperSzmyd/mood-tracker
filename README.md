@@ -1,24 +1,38 @@
 ![Tests](https://img.shields.io/github/actions/workflow/status/KacperSzmyd/mood-tracker/tests.yml?branch=main&label=tests&logo=github&style=flat-square)
-# Mood Tracker Web App
+![CI](https://github.com/KacperSzmyd/mood-tracker/actions/workflows/tests.yml/badge.svg)
 
-A simple web application for tracking your daily mood. Built with Flask, SQLite, and basic HTML/CSS. The app allows users to submit their mood each day and view their mood history.
+# 🧠 Everyday Mood Tracker
 
-## 🔧 Technologies Used
+A simple web application to track your daily mood, visualize it on a chart, and analyze your emotional trends over time.  
+Perfect for self-reflection and mental health awareness 🧘‍♀️
 
-- Python 3.x
+---
+
+## 🛠️ Tech stack
+
+- Python 3.10
 - Flask
 - SQLite + SQLAlchemy
-- HTML / CSS (optional JS)
-- (Optional) GitHub Actions for CI/CD
-- (Optional) Render or Railway for deployment
+- Jinja2 templates
+- Matplotlib
+- Pytest
+- GitHub Actions (CI)
 
-## ✨ Features
+---
 
-- Submit your current mood through a web form
-- Save entries to a local SQLite database
-- View a list of past mood entries with timestamps
-- Simple, clean UI
-- Modular code structure with blueprints and models
+## 🚀 Features
+
+- 🔐 User registration & login (Flask-Login)
+- 📅 Add mood (1–10 scale) with timestamp
+- 📈 Mood chart with color-coded points:
+  - 1–3 → 🔴 red (bad mood)
+  - 4–6 → 🟠 orange (neutral)
+  - 7–10 → 🟢 green (good mood)
+- 📊 Weekly average mood
+- 📥 Export data to CSV
+- 🧪 Pytest-based test suite + GitHub Actions CI
+
+---
 
 ## 🚀 Getting Started
 
@@ -34,16 +48,34 @@ A simple web application for tracking your daily mood. Built with Flask, SQLite,
     pip install -r requirements.txt
 
 4. Run the application:
-    flask --app run run
+    flask run
 
 5. Access the app in your browser at http://127.0.0.1:5000
 
 
+---
+
+📂 Project structure
+mood-tracker/
+├── app/
+│   ├── __init__.py
+│   ├── models.py
+│   ├── routes.py
+│   ├── auth.py
+│   ├── templates/
+│   └── static/
+├── tests/
+│   ├── conftest.py
+│   ├── test_auth.py
+│   └── test_mood.py
+├── .github/workflows/tests.yml
+├── README.md
+├── requirements.txt
+├── run.py
+└── mood.db (created at runtime)
+
+
 🧪 To Do / Upcoming Features
-
- Export mood history (CSV)
-
- Graph visualization of moods
 
  Frontend improvements (JS interactivity or React)
 
