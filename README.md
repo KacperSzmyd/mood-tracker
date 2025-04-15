@@ -1,5 +1,4 @@
 ![Tests](https://img.shields.io/github/actions/workflow/status/KacperSzmyd/mood-tracker/tests.yml?branch=main&label=tests&logo=github&style=flat-square)
-![CI](https://github.com/KacperSzmyd/mood-tracker/actions/workflows/tests.yml/badge.svg)
 
 # 🧠 Everyday Mood Tracker
 
