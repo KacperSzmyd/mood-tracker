@@ -14,4 +14,8 @@
     <div class='chart-container'>
         <img src="data:image/png;base64,{{ plot_url }}" alt="Mood chart">
     </div>
+
+    <p style="text-align:center;">
+        <a href="{{ url_for('main.export') }}">📥 Download mood history (CSV)</a>
+    </p>
 {% endblock %}

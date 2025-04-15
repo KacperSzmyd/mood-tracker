@@ -1,7 +1,16 @@
-from flask import Blueprint, render_template, redirect, request, flash, url_for
+from flask import (
+    Blueprint,
+    render_template,
+    redirect,
+    request,
+    flash,
+    url_for,
+    Response,
+)
 from flask_login import login_required, current_user
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
+import csv
 import io
 import base64
 from .models import Mood, db
@@ -72,3 +81,31 @@ def chart():
     plot_url = base64.b64encode(img.getvalue()).decode()
 
     return render_template("chart.html", plot_url=plot_url, avg=avg)
+
+
+@main.route("/export")
+@login_required
+def export():
+    moods = Mood.query.filter(Mood.user_id == current_user.id).order_by(Mood.date).all()
+
+    if not moods:
+        flash("No mood data to export.")
+        return redirect(url_for("main.index"))
+
+    def generate():
+        data = [["Date", "Mood (1-10)"]]
+        for item in moods:
+            data.append([item.date.strftime("%Y-%m-%d %H:%M"), item.mood])
+        output = io.StringIO()
+        writer = csv.writer(output)
+
+        for row in data:
+            writer.writerow(row)
+
+        return output.getvalue()
+
+    return Response(
+        generate(),
+        mimetype="text/csv",
+        headers={"Content-Disposition": "attachment;filename=moods.csv"},
+    )

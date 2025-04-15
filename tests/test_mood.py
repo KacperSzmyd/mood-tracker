@@ -88,3 +88,14 @@ def test_chart_without_data(client):
     response = client.get("/chart", follow_redirects=True)
 
     assert b"No mood data to show yet." in response.data
+
+
+def test_export_csv(client):
+    client.post("/register", data={"username": "csvman", "password": "123"}, follow_redirects=True)
+    client.post("/login", data={"username": "csvman", "password": "123"}, follow_redirects=True)
+    client.post("/", data={"mood": 6}, follow_redirects=True)
+
+    response = client.get("/export")
+    assert response.status_code == 200
+    assert b"Mood (1" in response.data 
+    assert b"6" in response.data        
